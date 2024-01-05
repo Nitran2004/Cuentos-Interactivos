@@ -1,0 +1,117 @@
+﻿@model SecureAssetManager.Models.Asset
+
+@{
+    ViewData["Title"] = "Detalles del Activo";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+<dl class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Nombre)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Nombre)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Responsable)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Responsable)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Ubicacion)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Ubicacion)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Descripcion)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Descripcion)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Tipo)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Tipo)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Categoria)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Categoria)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Clasificacion)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Clasificacion)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.EtiquetaPrincipal)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.EtiquetaPrincipal)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ValoracionConfidencialidad)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ValoracionConfidencialidad)
+    </dd>
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ValoracionIntegridad)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ValoracionIntegridad)
+    </dd>
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ValoracionDisponibilidad)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ValoracionDisponibilidad)
+    </dd>
+
+    
+    <dt class="col-sm-3">
+        Amenazas
+    </dt>
+    <dd class="col-sm-9">
+        <ul>
+            @foreach (var assetThreat in Model.AssetThreats)
+            {
+                <li>@assetThreat.Threat.ThreatDescription</li>
+            }
+        </ul>
+    </dd>
+
+    <dt class="col-sm-3">
+        Vulnerabilidades
+    </dt>
+    <dd class="col-sm-9">
+        <ul>
+            @foreach (var assetVulnerability in Model.AssetVulnerabilities)
+            {
+                <li>@assetVulnerability.Vulnerability.VulnerabilityDescription</li>
+            }
+        </ul>
+    </dd>
+
+
+
+</dl>
+
+<div>
+    <a asp-action="Index">Volver a la Lista de Activos</a>
+</div>

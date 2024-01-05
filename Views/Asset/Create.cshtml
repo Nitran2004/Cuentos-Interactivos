@@ -1,0 +1,348 @@
+﻿@model SecureAssetManager.Models.Asset
+
+@{
+    ViewData["Title"] = "Agregar Activo";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CodigoActivo" class="control-label"></label>
+                <input asp-for="CodigoActivo" class="form-control" />
+                <span asp-validation-for="CodigoActivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Responsable" class="control-label"></label>
+                <input asp-for="Responsable" class="form-control" />
+                <span asp-validation-for="Responsable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ubicacion"></label>
+                <select asp-for="Ubicacion" class="form-control">
+                    <option value="">-- Seleccione una Ubicación --</option>
+                    <option value="Técnica">Técnica</option>
+                    <option value="Geográfica">Geográfica</option>
+                </select>
+                <span asp-validation-for="Ubicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <select asp-for="Tipo" class="form-control">
+                    <option value="">-- Seleccione --</option>
+                    <option value="Pertenencia">Pertenencia</option>
+                    <option value="Beneficio">Beneficio</option>
+                    <option value="Recipiente">Recipiente</option>
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label"></label>
+                <select asp-for="Categoria" class="form-control">
+                    <option value="">-- Seleccione una opción --</option>
+                    <option value="arch">arch</option>
+                    <option value="D">D</option>
+                    <option value="keys">keys</option>
+                    <option value="S">S</option>
+                    <option value="SW">SW</option>
+                    <option value="HW">HW</option>
+                    <option value="COM">COM</option>
+                    <option value="Media">Media</option>
+                    <option value="AUX">AUX</option>
+                    <option value="L">L</option>
+                    <option value="P">P</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Clasificacion" class="control-label"></label>
+                <select asp-for="Clasificacion" class="form-control">
+                    <option value="Publico">Publico</option>
+                    <option value="Restringido">Restringido</option>
+                    <option value="Confidencial">Confidencial</option>
+                </select>
+                <span asp-validation-for="Clasificacion" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="EtiquetaPrincipal" class="control-label"></label>
+                <select asp-for="EtiquetaPrincipal" class="form-control">
+                    <option value="sap">sap</option>
+                    <option value="ip">ip</option>
+                    <option value="ext">ext</option>
+                    <option value="files">files</option>
+                    <option value="backup">backup</option>
+                    <option value="conf">conf</option>
+                    <option value="password">password</option>
+                    <option value="auth">auth</option>
+                    <option value="info">info</option>
+                    <option value="encrypt">encrypt</option>
+                    <option value="shared_secret">shared_secret</option>
+                    <option value="public_encryption">public_encryption</option>
+                    <option value="public_decryption">public_decryption</option>
+                    <option value="anon">anon</option>
+                    <option value="pub">pub</option>
+                    <option value="ext">ext</option>
+                    <option value="www">www</option>
+                    <option value="telnet">telnet</option>
+                    <option value="email">email</option>
+                    <option value="file">file</option>
+                    <option value="prp">prp</option>
+                    <option value="std">std</option>
+                    <option value="browser">browser</option>
+                    <option value="www">www</option>
+                    <option value="app">app</option>
+                    <option value="email_client">email_client</option>
+                    <option value="email_server">email_server</option>
+                    <option value="host">host</option>
+                    <option value="pc">pc</option>
+                    <option value="mobile">mobile</option>
+                    <option value="pda">pda</option>
+                    <option value="ipphone">ipphone</option>
+                    <option value="wifi">wifi</option>
+                    <option value="mobile">mobile</option>
+                    <option value="sat">sat</option>
+                    <option value="LAN">LAN</option>
+                    <option value="MAN">MAN</option>
+                    <option value="Internet">Internet</option>
+                    <option value="electronic">electronic</option>
+                    <option value="disk">disk</option>
+                    <option value="vdisk">vdisk</option>
+                    <option value="cd">cd</option>
+                    <option value="usb">usb</option>
+                    <option value="dvd">dvd</option>
+                    <option value="power">power</option>
+                    <option value="ups">ups</option>
+                    <option value="gen">gen</option>
+                    <option value="cabling">cabling</option>
+                    <option value="wire">wire</option>
+                    <option value="fiber">fiber</option>
+                    <option value="site">site</option>
+                    <option value="building">building</option>
+                    <option value="local">local</option>
+                    <option value="mobile">mobile</option>
+                    <option value="car">car</option>
+                    <option value="plane">plane</option>
+                    <option value="ship">ship</option>
+                    <option value="shelter">shelter</option>
+                    <option value="ue">ue</option>
+                    <option value="ui">ui</option>
+                    <option value="op">op</option>
+                    <option value="adm">adm</option>
+            </select>
+            </div>
+
+
+
+            <datalist id="valoracionList">
+
+                <option value="0">Despreciable</option>
+                <option value="1">Bajo</option>
+                <option value="2">Bajo</option>
+                <option value="3">Medio</option>
+                <option value="4">Medio</option>
+                <option value="5">Medio</option>
+                <option value="6">Alto</option>
+                <option value="7">Alto</option>
+                <option value="8">Alto</option>
+                <option value="9">Muy Alto</option>
+                <option value="10">Extremo</option>
+            </datalist>
+
+            <div class="form-group">
+                <label asp-for="ValoracionConfidencialidad" class="control-label"></label>
+                <input type="number" name="ValoracionConfidencialidad" min="0" max="10" step="1" list="valoracionList">
+                <span asp-validation-for="ValoracionConfidencialidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValoracionIntegridad" class="control-label"></label>
+                <input type="number" name="ValoracionIntegridad" min="0" max="10" step="1" list="valoracionList">
+                <span asp-validation-for="ValoracionIntegridad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValoracionDisponibilidad" class="control-label"></label>
+                <input type="number" name="ValoracionDisponibilidad" min="0" max="10" step="1" list="valoracionList">
+                <span asp-validation-for="ValoracionDisponibilidad" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="AssetThreats" class="control-label">Amenazas</label>
+                <div>
+                    @foreach (var threat in ViewBag.Threats as List<Threat>)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" name="selectedThreats" value="@threat.Id" class="form-check-input" />
+                            <label class="form-check-label">@threat.ThreatDescription</label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AssetVulnerabilities" class="control-label">Vulnerabilidades</label>
+                <div>
+                    @foreach (var vulnerability in ViewBag.Vulnerabilities as List<Vulnerability>)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" name="selectedVulnerabilities" value="@vulnerability.Id" class="form-check-input" />
+                            <label class="form-check-label">@vulnerability.VulnerabilityDescription</label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Regresar a la lista</a>
+
+</div>
+
+
+<hr />
+<h3>Instructivo de categorización:</h3>
+<hr />
+<h3>[arch] Arquitectura del sistema:</h3>
+
+<ul>
+    <li>[sap] punto de [acceso al] servicio.</li>
+    <li>[ip] punto de interconexión.</li>
+    <li>[ext] proporcionado por terceros.</li>
+</ul>
+<h3>[D] Datos / Información:</h3>
+<ul>
+    <li>[files] ficheros.</li>
+    <li>[backup] copias de respaldo.</li>
+    <li>[conf] datos de configuración.</li>
+    <li>[password] credenciales (ej. contraseñas).</li>
+    <li>[auth] datos de validación de credenciales, etc.</li>
+</ul>
+<h3>[keys] Claves criptográficas:</h3>
+<ul>
+    <li>[info] protección de la información.</li>
+    <li>[encrypt] claves de cifra.</li>
+    <li>[shared_secret] secreto compartido.</li>
+    <li>[public_encryption] clave pública de cifra.</li>
+    <li>[public_decryption] clave privada de descifrado, etc.</li>
+</ul>
+<h3>[S] Servicios:</h3>
+<ul>
+    <li>[anon] anónimo.</li>
+    <li>[pub] al público en general.</li>
+    <li>[ext] a usuarios externos.</li>
+    <li>[www] world wide web.</li>
+    <li>[telnet] acceso remoto a cuenta local.</li>
+    <li>[email] correo electrónico.</li>
+    <li>[file] almacenamiento de ficheros, etc.</li>
+</ul>
+
+<div>
+    <h3>[SW] Aplicaciones (software):</h3>
+    <ul>
+        <li>[prp] desarrollo propio (in house).</li>
+        <li>[std] estándar (off the shelf).</li>
+        <li>[browser] navegador web.</li>
+        <li>[www] servidor de presentación.</li>
+        <li>[app] servidor de aplicaciones.</li>
+        <li>[email_client] cliente de correo electrónico.</li>
+        <li>[email_server] servidor de correo electrónico, entre otros.</li>
+    </ul>
+</div>
+<div>
+    <h3>[HW] Equipamiento informático (hardware):</h3>
+    <ul>
+        <li>[host] grandes equipos.</li>
+        <li>[pc] informática personal.</li>
+        <li>[mobile] informática móvil.</li>
+        <li>[pda] agendas electrónicas.</li>
+        <li>[ipphone] teléfono IP, entre otros.</li>
+    </ul>
+</div>
+<div>
+    <h3>[COM] Redes de comunicaciones:</h3>
+    <ul>
+        <li>[wifi] red inalámbrica.</li>
+        <li>[mobile] telefonía móvil.</li>
+        <li>[sat] por satélite.</li>
+        <li>[LAN] red local.</li>
+        <li>[MAN] red metropolitana.</li>
+        <li>[Internet] Internet, etc.</li>
+    </ul>
+</div>
+<div>
+    <h3>[Media] Soportes de información:</h3>
+    <ul>
+        <li>[electronic] electrónicos.</li>
+        <li>[disk] discos.</li>
+        <li>[vdisk] discos virtuales.</li>
+        <li>[cd] cederrón (CD-ROM).</li>
+        <li>[usb] memorias USB.</li>
+        <li>[dvd] DVD, entre otros.</li>
+    </ul>
+</div>
+<div>
+    <h3>[AUX] Equipamiento auxiliar:</h3>
+    <ul>
+        <li>[power] fuentes de alimentación.</li>
+        <li>[ups] sistemas de alimentación ininterrumpida.</li>
+        <li>[gen] generadores eléctricos.</li>
+        <li>[cabling] cableado.</li>
+        <li>[wire] cable eléctrico.</li>
+        <li>[fiber] fibra óptica, etc.</li>
+    </ul>
+</div>
+<div>
+    <h3>[L] Instalaciones:</h3>
+    <ul>
+        <li>[site] recinto.</li>
+        <li>[building] edificio.</li>
+        <li>[local] cuarto.</li>
+        <li>[mobile] plataformas móviles.</li>
+        <li>[car] vehículo terrestre.</li>
+        <li>[plane] vehículo aéreo: avión.</li>
+        <li>[ship] vehículo marítimo.</li>
+        <li>[shelter] contenedores, etc.</li>
+    </ul>
+</div>
+<div>
+    <h3>[P] Personal:</h3>
+    <ul>
+        <li>[ue] usuarios externos.</li>
+        <li>[ui] usuarios internos.</li>
+        <li>[op] operadores.</li>
+        <li>[adm] administradores de sistemas, entre otros.</li>
+    </ul>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
