@@ -9,7 +9,7 @@ namespace SecureAssetManager.Models
         public string Code { get; set; }
 
         [Display(Name = "CID")]
-        public double CID { get; set; }
+        public double? CID { get; set; }
 
         [Display(Name = "Nivel de Amenaza")]
         public int ThreatLevel { get; set; }
@@ -18,7 +18,7 @@ namespace SecureAssetManager.Models
         public int VulnerabilityLevel { get; set; }
 
         [Display(Name = "Nivel de Riesgo")]
-        public double RiskLevel { get; set; }
+        public double? RiskLevel { get; set; }
 
         [Display(Name = "Resultado")]
         public string Result { get; set; }

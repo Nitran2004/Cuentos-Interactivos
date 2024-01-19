@@ -46,9 +46,20 @@ namespace SecureAssetManager.Controllers
                     double sumConfidencialidad = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
                     double sumIntegridad = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
                     double sumDisponibilidad = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
-                    double averageConfidencialidad = sumConfidencialidad / assetVulnerabilities.Count();
-                    double averageIntegridad = sumIntegridad / assetVulnerabilities.Count();
-                    double averageDisponibilidad = sumDisponibilidad / assetVulnerabilities.Count();
+
+                    if (assetVulnerabilities.Any())
+                    {
+                        double averageConfidencialidad = sumConfidencialidad / assetVulnerabilities.Count();
+                        double averageIntegridad = sumIntegridad / assetVulnerabilities.Count();
+                        double averageDisponibilidad = sumDisponibilidad / assetVulnerabilities.Count();
+
+                        risk.CID = (averageConfidencialidad + averageIntegridad + averageDisponibilidad) / 3.0;
+                    }
+                    else
+                    {
+                        // Establece un valor predeterminado o maneja este caso de manera apropiada
+                        risk.CID = 0.0; // Otra opción sería asignar null o cualquier otro valor por defecto
+                    }
 
                     double sumThreatProbability = assetThreats.Select(at => at.Threat.Probability).Sum();
                     double averageThreatProbability = sumThreatProbability / assetThreats.Count();
@@ -56,18 +67,34 @@ namespace SecureAssetManager.Controllers
                     double sumVulnerabilityProbability = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
                     double averageVulnerabilityProbability = sumVulnerabilityProbability / assetVulnerabilities.Count();
 
-                    risk.CID = (averageConfidencialidad + averageIntegridad + averageDisponibilidad) / 3.0;
                     risk.ThreatLevel = (int)averageThreatProbability;
                     risk.VulnerabilityLevel = (int)averageVulnerabilityProbability;
                     risk.RiskLevel = risk.CID * risk.ThreatLevel * risk.VulnerabilityLevel;
-                    risk.Result = risk.RiskLevel > 20 ? "Alto" : risk.RiskLevel > 5 ? "Medio" : "Bajo";
+
+                    // Asegúrate de que 'RiskLevel' y 'CID' no sean nulos antes de establecer 'Result'
+                    if (risk.RiskLevel.HasValue && risk.CID.HasValue)
+                    {
+                        risk.Result = risk.RiskLevel > 20 ? "Alto" : risk.RiskLevel > 5 ? "Medio" : "Bajo";
+                    }
+                    else
+                    {
+                        // Establece un valor predeterminado o maneja este caso de manera apropiada
+                        risk.Result = "Desconocido";
+                    }
                 }
+            }
+
+            if (risk.Result == null)
+            {
+                // Si por alguna razón 'Result' es null, establece un valor predeterminado
+                risk.Result = "Desconocido";
             }
 
             _context.Add(risk);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
 
 
