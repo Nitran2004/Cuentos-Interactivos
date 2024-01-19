@@ -19,12 +19,12 @@ namespace SecureAssetManager.Models
         public string ThreatDescription { get; set; }
 
         [Required(ErrorMessage = "La degradación es obligatoria.")]
-        [Range(1, 3, ErrorMessage = "La degradación debe estar entre 1 y 3.")]
+        [Range(1, 5, ErrorMessage = "La degradación debe estar entre 1 y 3.")]
         [Display(Name = "Degradación")]
         public int Degradation { get; set; }
 
         [Required(ErrorMessage = "La probabilidad es obligatoria.")]
-        [Range(1, 3, ErrorMessage = "La probabilidad debe estar entre 1 y 3.")]
+        [Range(1, 100, ErrorMessage = "La probabilidad debe estar entre 1 y 100.")]
         [Display(Name = "Probabilidad")]
         public int Probability { get; set; }
     }

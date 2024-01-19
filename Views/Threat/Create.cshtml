@@ -19,7 +19,9 @@
                     <option value="">-- Selecciona una opción --</option>
                     <option value="Natural">Natural</option>
                     <option value="Industrial">Industrial</option>
-                    <option value="Errores y fallos no intencionados">Errores y fallos no intencionados</option>
+                    <option value="Defectos de las aplicaciones ">Defectos de las aplicaciones </option>
+                    <option value="Causadas por las personas de forma accidental">Causadas por las personas de forma accidental</option>
+                    <option value="Causadas por las personas de forma deliberada ">Causadas por las personas de forma deliberada </option>
                 </select>
                 <span asp-validation-for="ThreatOrigin" class="text-danger"></span>
             </div>
@@ -32,15 +34,26 @@
                 <label asp-for="Degradation" class="control-label"></label>
                 <select asp-for="Degradation" class="form-control">
                     <option value="">-- Selecciona una opción --</option>
-                    <option value="3">Totalmente degradado</option>
-                    <option value="2">Degradación leve</option>
-                    <option value="1">Degradado en una pequeña fracción</option>
+                    <option value="5">[MA] muy alta</option>
+                    <option value="4">[A] alta</option>
+                    <option value="3">[M] media </option>
+                    <option value="2">[B] baja</option>
+                    <option value="1">[MB] muy baja</option>
+
                 </select>
                 <span asp-validation-for="Degradation" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Probability" class="control-label"></label>
-                <input asp-for="Probability" class="form-control" />
+                <select asp-for="Probability" class="form-control">
+                    <option value="">-- Selecciona una opción --</option>
+                    <option value="5">[MA] 100 muy frecuente a diario</option>
+                    <option value="4">[A] 10 frecuente mensualmente </option>
+                    <option value="3">[M] 1 normal una vez al año  </option>
+                    <option value="2">[B] 1/10 poco frecuente cada varios años</option>
+                    <option value="1">[MB] 1/100 muy poco frecuente siglos</option>
+
+                </select>
                 <span asp-validation-for="Probability" class="text-danger"></span>
             </div>
             <div class="form-group">
