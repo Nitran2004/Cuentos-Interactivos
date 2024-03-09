@@ -1,74 +1,30 @@
 ﻿@model SecureAssetManager.Models.Threat
 
 @{
-    ViewData["Title"] = "Crear Amenaza";
+    ViewData["Title"] = "Jurásico";
 }
 
-<h1>Crear Amenaza</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>Amenaza</h4>
 <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ThreatOrigin" class="control-label"></label>
-                <select asp-for="ThreatOrigin" class="form-control">
-                    <option value="">-- Selecciona una opción --</option>
-                    <option value="Natural">Natural</option>
-                    <option value="Industrial">Industrial</option>
-                    <option value="Defectos de las aplicaciones ">Defectos de las aplicaciones </option>
-                    <option value="Causadas por las personas de forma accidental">Causadas por las personas de forma accidental</option>
-                    <option value="Causadas por las personas de forma deliberada ">Causadas por las personas de forma deliberada </option>
-                </select>
-                <span asp-validation-for="ThreatOrigin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ThreatDescription" class="control-label"></label>
-                <input asp-for="ThreatDescription" class="form-control" />
-                <span asp-validation-for="ThreatDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Degradation" class="control-label"></label>
-                <select asp-for="Degradation" class="form-control">
-                    <option value="">-- Selecciona una opción --</option>
-                    <option value="5">[MA] muy alta</option>
-                    <option value="4">[A] alta</option>
-                    <option value="3">[M] media </option>
-                    <option value="2">[B] baja</option>
-                    <option value="1">[MB] muy baja</option>
-
-                </select>
-                <span asp-validation-for="Degradation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Probability" class="control-label"></label>
-                <select asp-for="Probability" class="form-control">
-                    <option value="">-- Selecciona una opción --</option>
-                    <option value="5">[MA] 100 muy frecuente a diario</option>
-                    <option value="4">[A] 10 frecuente mensualmente </option>
-                    <option value="3">[M] 1 normal una vez al año  </option>
-                    <option value="2">[B] 1/10 poco frecuente cada varios años</option>
-                    <option value="1">[MB] 1/100 muy poco frecuente siglos</option>
-
-                </select>
-                <span asp-validation-for="Probability" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-            </div>
-        </form>
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/nido.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p>
+            Un chico se despierta desconcertado cerca de lo que parece ser unos huevos de dinosaurio, los cuales tienen mal olor. Se asusta por un dinosaurio que estaba a su costado y grita asustadamente.
+        </p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Volver a la lista</a>
+<div class="text-left mt-3">
+    <a asp-controller="Asset" asp-action="Create" style="float: left;">Página anterior</a>
 </div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+
+<div class="text-right mt-3">
+    <a asp-controller="Control" asp-action="Create" style="float: right;">Página siguiente</a>
+</div>
+

@@ -66,6 +66,11 @@ body {
         transform: translateY(4px);
     }
 
+    .custom-text-color {
+        color: black !important;
+    }
+
+
 <!--
 https://coolors.co/palette/6ab6dc-49a6d4-2f94c6-277ba5-1f6284-e0b700-ffd20a-ffda33-ffe15c-ffe570
 -->
