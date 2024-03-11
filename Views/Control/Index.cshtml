@@ -1,61 +1,30 @@
 ﻿@model IEnumerable<SecureAssetManager.Models.Control>
 
 @{
-    ViewData["Title"] = "Lista de Controles";
+    ViewData["Title"] = "Jurasico 4";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create">Crear Nuevo Control</a>
-</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoControl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Efectividad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BrechaSeguridadIdentificada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Implementacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Monitoreo)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoControl)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Efectividad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BrechaSeguridadIdentificada)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Implementacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Monitoreo)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.ID">Detalles</a> |
-                    <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/comentando.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p>
+            En su alejamiento del campamento, motivados por la escasez de alimentos, se topan con un árbol alto que les regala frutas. Sin embargo, una ráfaga de viento los desvía y, al recobrar la conciencia, se encuentran en un nido rodeado de huevos. Explica Darius a sus amigos.El chico se cuestiona si esta acción es un intento de alimentar a sus crías, subrayando el inconfundible mal olor del dinosaurio.
+
+        </p>
+    </div>
+</div>
+
+<div class="text-left mt-3">
+    <a asp-controller="Control" asp-action="Create" style="float: left;">Página anterior</a>
+</div>
+
+
+<div class="text-right mt-3">
+    <a asp-controller="Risk" asp-action="Index" style="float: right;">Página siguiente</a>
+</div>

@@ -1,30 +1,38 @@
 ﻿@model SecureAssetManager.Models.Risk
 
 @{
-    ViewData["Title"] = "Jurasico";
+    ViewData["Title"] = "Jurasico 6";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<div id="container">
-    <div id="left-side" class="text-center">
-        <img src="~/images/nido.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+<div id="container" style="display: flex; justify-content: center;">
+    <div class="img-container" style="margin-right: 20px;">
+        <img src="~/images/huyen.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px;" />
     </div>
-    <div id="right-side">
-        <p>
-            Más tarde, Darius, Sammy y Brooklynn se reencuentran. Darius, preocupado por la presencia del dinosaurio, les advierte sobre la peligrosa situación. Mientras comparte su experiencia de una de las peores tormentas que ha vivido, sus amigas mencionan que él les aseguró que regresaría pronto y, sin embargo, desapareció. Durante su exploración, Darius descubre una cámara escondida en el nido.
-        </p>
+    <div class="img-container">
+        <img src="~/images/observar.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px;" />
     </div>
+</div>
+
+<div id="right-side">
+    <p>
+        Logran evadir el peligro y llegan a un campamento.
+
+        El chico, enfrentando la tecnología antigua, revela su incapacidad para encenderla, mientras la chica muestra su aprecio por la tecnología retro. Juntos, visualizan un video donde tres velocirraptores se enfrentan por la comida, y un cuarto velocirraptor utiliza una piedra para distraerlos. Un científico solicita a Owen Greidy un pergamino, pero termina descartando una hoja que debía ser entregada. La especulación sobre el almacenamiento de alimentos inicia un debate sobre si deberían ingresar a la jaula de raptores para obtener información de la hoja desechada.
+    </p>
 </div>
 
 <div class="text-left mt-3">
-    <a asp-controller="Asset" asp-action="Create" style="float: left;">Página anterior</a>
+    <a asp-controller="Risk" asp-action="Index" style="float: left;">Página anterior</a>
 </div>
-
 
 <div class="text-right mt-3">
-    <a asp-controller="Control" asp-action="Create" style="float: right;">Página siguiente</a>
+    <a asp-controller="Threat" asp-action="Index" style="float: right;">Página siguiente</a>
 </div>
 
-
-
+<style>
+    .img-container {
+        display: inline-block;
+    }
+</style>

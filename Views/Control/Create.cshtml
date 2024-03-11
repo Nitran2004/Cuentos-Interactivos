@@ -1,7 +1,7 @@
 ﻿@model SecureAssetManager.Models.Control
 
 @{
-    ViewData["Title"] = "Jurásico";
+    ViewData["Title"] = "Jurásico 3";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -9,7 +9,7 @@
 <div id="container" style="display: flex; justify-content: space-between;">
     <div id="left-side" class="text-center">
         <img src="~/images/arbol.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
-        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Risk">Arbol</a>
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">Arbol</a>
     </div>
     <div id="center" class="text-center">
         <p>
@@ -18,7 +18,7 @@
     </div>
     <div id="right-side" class="text-center">
         <img src="~/images/liana.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
-        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Threat">Liana</a>
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Details" asp-controller="Risk">Liana</a>
     </div>
 </div>
 

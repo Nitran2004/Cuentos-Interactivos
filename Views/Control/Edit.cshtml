@@ -1,53 +1,28 @@
 ﻿@model SecureAssetManager.Models.Control
 
 @{
-    ViewData["Title"] = "Editar Control";
+    ViewData["Title"] = "Jurasico";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<div>
-    <h4>Editar Control</h4>
-    <hr />
-    <form asp-action="Edit">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ID" />
 
-        <div class="form-group">
-            <label asp-for="TipoControl" class="control-label"></label>
-            <input asp-for="TipoControl" class="form-control" />
-            <span asp-validation-for="TipoControl" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Efectividad" class="control-label"></label>
-            <input asp-for="Efectividad" class="form-control" />
-            <span asp-validation-for="Efectividad" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="BrechaSeguridadIdentificada" class="control-label"></label>
-            <input asp-for="BrechaSeguridadIdentificada" class="form-control" />
-            <span asp-validation-for="BrechaSeguridadIdentificada" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Implementacion" class="control-label"></label>
-            <input asp-for="Implementacion" class="form-control" />
-            <span asp-validation-for="Implementacion" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Monitoreo" class="control-label"></label>
-            <input asp-for="Monitoreo" class="form-control" />
-            <span asp-validation-for="Monitoreo" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <input type="submit" value="Guardar" class="btn btn-primary" />
-        </div>
-    </form>
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/nido.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p>
+            En su alejamiento del campamento, motivados por la escasez de alimentos, se topan con un árbol alto que les regala frutas. Sin embargo, una ráfaga de viento los desvía y, al recobrar la conciencia, se encuentran en un nido rodeado de huevos. Explica Darius a sus amigos,
+        </p>
+    </div>
 </div>
-<div>
-    <a asp-action="Index">Volver a la lista</a>
+
+<div class="text-left mt-3">
+    <a asp-controller="Asset" asp-action="Create" style="float: left;">Página anterior</a>
+</div>
+
+
+<div class="text-right mt-3">
+    <a asp-controller="Control" asp-action="Create" style="float: right;">Página siguiente</a>
 </div>
