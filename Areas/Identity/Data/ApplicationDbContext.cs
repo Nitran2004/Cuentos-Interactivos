@@ -60,5 +60,11 @@ namespace SecureAssetManager.Data
 
 			return fileName;
 		}
+
+        public DbSet<SecureAssetManager.Models.Dieta>? Dieta { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Conducta>? Conducta { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Montaña>? Montaña { get; set; }
 	}
 }
