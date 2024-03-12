@@ -66,5 +66,9 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Conducta>? Conducta { get; set; }
 
         public DbSet<SecureAssetManager.Models.Montaña>? Montaña { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Fin>? Fin { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Salida>? Salida { get; set; }
 	}
 }

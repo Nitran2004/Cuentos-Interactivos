@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecureAssetManager.Data;
 
@@ -11,9 +12,10 @@ using SecureAssetManager.Data;
 namespace SecureAssetManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240311234640_CambiosSalidaBdd")]
+    partial class CambiosSalidaBdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -419,26 +421,6 @@ namespace SecureAssetManager.Migrations
                     b.ToTable("Dieta");
                 });
 
-            modelBuilder.Entity("SecureAssetManager.Models.Fin", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("Efectividad")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TipoControl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Fin");
-                });
-
             modelBuilder.Entity("SecureAssetManager.Models.Montaña", b =>
                 {
                     b.Property<int>("ID")
@@ -488,26 +470,6 @@ namespace SecureAssetManager.Migrations
                     b.HasKey("Code");
 
                     b.ToTable("Risks");
-                });
-
-            modelBuilder.Entity("SecureAssetManager.Models.Salida", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("Efectividad")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TipoControl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Salida");
                 });
 
             modelBuilder.Entity("SecureAssetManager.Models.Threat", b =>
