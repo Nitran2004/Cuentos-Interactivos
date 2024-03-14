@@ -3,48 +3,92 @@
 
 @{
 	ViewData["Title"] = "Entrar";
-	Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+    @*Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";*@
 }
-<style>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunDecision - Inicio</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Agrega tus estilos CSS aquí -->
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
 
+        .logo {
+            width: 150px;
+        }
 
-</style>
+        .right-links {
+            display: flex;
+            gap: 20px;
+        }
 
-<div class="col-md-10 offset-md-1">
-	<section>
-		<div class="login-form-icon">
-			<i style="margin: 10px 35%;" class="fas fa-user-circle fa-9x text-secondary"></i>
-		</div>
-		<form id="account" method="post">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-floating">
-				<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-				<label asp-for="Input.Email" class="form-label"></label>
-				<span asp-validation-for="Input.Email" class="text-danger"></span>
-			</div>
-			<div class="form-floating">
-				<input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-				<label asp-for="Input.Password" class="form-label"></label>
-				<span asp-validation-for="Input.Password" class="text-danger"></span>
-			</div>
-			<div>
-				<div class="checkbox">
-					<label asp-for="Input.RememberMe" class="form-label">
-						<input class="form-check-input" asp-for="Input.RememberMe" />
-						@Html.DisplayNameFor(m => m.Input.RememberMe)
-					</label>
-				</div>
-			</div>
-			<div>
-				<button class="button" id="login-submit" type="submit">Ingresar</button>
-			</div>
-		</form>
-	</section>
-</div>
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+        }
 
+        .bottom-menu {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
 
-@section Scripts {
-	<partial name="_ValidationScriptsPartial" />
-}
+            .bottom-menu a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="~/img/logo1.jpg" alt="Descripción de la imagen" class="logo" />
+        <p>¡Decide Tu Cuento!</p>
+    </div>
+
+    <div class="right-links">
+        <a href="#">EMPEZAR GRATIS</a>
+        <a href="https://localhost:7267/Identity/Account/Login2?ReturnUrl=%2F">Iniciar sesión <img src="~/img/perfil.png" alt="Inicio" width="20"></a>
+        <a href="#">Favoritos <img src="~/img/corazon.png" alt="Favoritos" width="20"></a>
+        <a href="#">Carrito <img src="~/img/carrito.png" alt="Carrito" width="20"></a>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com"><img src="~/img/facelogo.png" alt="Facebook" width="30"></a>
+        <a href="https://www.instagram.com"><img src="~/img/instalogo.png" alt="Instagram" width="30"></a>
+        <a href="https://wa.me/"><img src="~/img/whatslogo.png" alt="WhatsApp" width="30"></a>
+        <a href="https://www.spotify.com"><img src="~/img/spotifylogo.png" alt="Spotify" width="30"></a>
+    </div>
+
+    <div class="bottom-menu">
+        <a href="#">Recomendados</a>
+        <a href="#">Novedades</a>
+        <a href="#">Jóvenes lectores</a>
+        <a href="#">Infantil</a>
+        <a href="#">Empresarial</a>
+        <a href="#">Más vendidos</a>
+        <a href="#">Contactos</a>
+        <a href="#">Quiénes somos</a>
+    </div>
+</body>
+</html>
+
