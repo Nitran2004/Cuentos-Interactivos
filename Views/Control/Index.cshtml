@@ -6,22 +6,26 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<style>
+    #container {
+        display: flex;
+        justify-content: space-between;
+    }
 
+    #right-side p {
+        font-size: 2em; /* Ajusta este valor según tus necesidades */
+    }
+</style>
 
 <div id="container">
     <div id="left-side" class="text-center">
-        <img src="~/images/comentando.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+        <img src="~/images/comentando.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
     </div>
     <div id="right-side">
         <p>
-            En su alejamiento del campamento, motivados por la escasez de alimentos, se topan con un árbol alto que les regala frutas. Sin embargo, una ráfaga de viento los desvía y, al recobrar la conciencia, se encuentran en un nido rodeado de huevos. Explica Darius a sus amigos.El chico se cuestiona si esta acción es un intento de alimentar a sus crías, subrayando el inconfundible mal olor del dinosaurio.
-
+            En su alejamiento del campamento, se topan con un árbol alto que les regala frutas. Sin embargo, una ráfaga de viento los desvía y se encuentran en un nido rodeado de huevos.
         </p>
     </div>
-</div>
-
-<div class="text-left mt-3">
-    <a asp-controller="Control" asp-action="Create" style="float: left;">Página anterior</a>
 </div>
 
 

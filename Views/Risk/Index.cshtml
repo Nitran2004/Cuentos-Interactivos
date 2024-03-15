@@ -6,18 +6,29 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<div id="container" style="display: flex; justify-content: space-between;">
+<style>
+    #container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #center p, #left-side a, #right-side a {
+        font-size: 2em; /* Ajusta este valor según tus necesidades */
+    }
+</style>
+
+<div id="container">
     <div id="left-side" class="text-center">
-        <img src="~/images/esconder.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+        <img src="~/images/esconder.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
         <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Risk">Esperar</a>
     </div>
     <div id="center" class="text-center">
         <p>
-            Después de una caminata, se cruzan con otro dinosaurio de naturaleza pacífica que los conduce hacia su manada. Planean compartir la comida todos juntos, pero la intervención de terodáctilos desencadena el caos. Optan por esconderse en un árbol y deben decidir entre esperar o correr
+            Después de una caminata, se cruzan con otro dinosaurio de naturaleza pacífica que los conduce hacia su manada. Planean compartir la comida todos juntos, pero la intervención de terodáctilos desencadena el caos. Optan por esconderse en un árbol y deben decidir entre esperar o correr.
         </p>
     </div>
     <div id="right-side" class="text-center">
-        <img src="~/images/correr.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 300px; margin: 0 auto;" />
+        <img src="~/images/correr.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
         <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Control">Correr</a>
     </div>
 </div>
