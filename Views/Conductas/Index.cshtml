@@ -1,41 +1,26 @@
 ﻿@model IEnumerable<SecureAssetManager.Models.Conducta>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jurasico 8.1";
 }
 
-<h1>Index</h1>
+<h2 style="font-size: 2em;">@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoControl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Efectividad)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoControl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Efectividad)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div id="container" style="display: flex; justify-content: space-between;">
+    <div id="left-side" class="text-center">
+        <img src="~/images/camara.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" style="max-width: 450px; margin: 0 auto;" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Fin" style="font-size: 1.5em;">Camara de seguridad</a>
+    </div>
+    <div id="center" class="text-center">
+        <p style="font-size: 1.5em;">
+            Adentrándose en el corral, encuentran la carta desechada que revela que están siendo buscados.
+            La incertidumbre sobre si "Aventura misteriosa" es un juego se plantea.
+            La chica sugiere buscar información en el libro con datos secretos del parque,
+            optando entre la entrada principal o revisar las cámaras de seguridad
+        </p>
+    </div>
+    <div id="right-side" class="text-center">
+        <img src="~/images/pasillo.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 450px; margin: 0 auto;" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Vulnerability" style="font-size: 1.5em;">Calle Principal</a>
+    </div>
+</div>
