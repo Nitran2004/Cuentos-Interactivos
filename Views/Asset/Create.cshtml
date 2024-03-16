@@ -1,13 +1,9 @@
 ﻿@model SecureAssetManager.Models.Asset
-
 @{
     ViewData["Title"] = "Libreria 1";
 }
-
 <h1>@ViewData["Title"]</h1>
-
 <hr />
-
 <style>
     #container {
         display: flex;
@@ -16,6 +12,10 @@
 
     #left-side {
         width: 40%;
+    }
+
+    #right-side p {
+        font-size: 1.5em; /* Ajusta este valor según tus necesidades */
     }
 
     #right-side {
@@ -27,34 +27,24 @@
         }
 
     img {
-        max-width: 100%;
+        max-width: 500%; /* Aumenta el tamaño máximo de la imagen */
         height: auto;
     }
 </style>
-
-
 <div id="container">
     <div id="left-side">
-        <h1>Jurassic World: Campamento Cretácico - Aventura misteriosa </h1>
+        <h1>Jurassic World: Campamento Cretácico - Aventura misteriosa</h1>
         <img src="~/images/jurasico.jpg" alt="Descripción de la imagen" />
     </div>
     <div id="right-side">
         <p>
-            "Jurassic World: Campamento Cretácico - Aventura misteriosa" es una emocionante historia donde tú, como espectador, ayudas a un grupo de adolescentes a sobrevivir en la isla Nublar. Los dinosaurios escapan y los jóvenes deben tomar decisiones importantes para mantenerse a salvo.
-
-            En la aventura, los chicos enfrentan desafíos como escapar de los dinosaurios y encontrar refugio. Tú decides qué hacer en situaciones como cuando los dinosaurios escapan del laboratorio o cuando necesitan llegar al muelle para salir de la isla.
-
-            Puedes ver esta emocionante aventura y ayudar a los personajes a tomar decisiones. ¡Espero que te diviertas mucho decidiendo su destino! 😊
+            "Jurassic World: Campamento Cretácico - Aventura misteriosa" es una emocionante historia donde tú, como espectador, ayudas a un grupo de adolescentes a sobrevivir en la isla Nublar. Los dinosaurios escapan y los jóvenes deben tomar decisiones importantes para mantenerse a salvo. En la aventura, los chicos enfrentan desafíos como escapar de los dinosaurios y encontrar refugio. Tú decides qué hacer en situaciones como cuando los dinosaurios escapan del laboratorio o cuando necesitan llegar al muelle para salir de la isla. Puedes ver esta emocionante aventura y ayudar a los personajes a tomar decisiones. ¡Espero que te diviertas mucho decidiendo su destino! 😊
         </p>
         <div class="buttons">
-
             <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Threat">Leer cuento</a>
-
         </div>
-
     </div>
 </div>
-
 <div>
     <a asp-controller="Home" asp-action="Index">Regresar a la lista</a>
 </div>

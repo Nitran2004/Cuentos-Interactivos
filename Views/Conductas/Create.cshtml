@@ -1,38 +1,34 @@
 ﻿@model SecureAssetManager.Models.Conducta
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Jurasico 6.1";
 }
 
-<h1>Create</h1>
+<h2>@ViewData["Title"]</h2>
 
-<h4>Conducta</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TipoControl" class="control-label"></label>
-                <input asp-for="TipoControl" class="form-control" />
-                <span asp-validation-for="TipoControl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Efectividad" class="control-label"></label>
-                <input asp-for="Efectividad" class="form-control" />
-                <span asp-validation-for="Efectividad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<style>
+    #container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #right-side p {
+        font-size: 2em; /* Ajusta este valor según tus necesidades */
+    }
+</style>
+
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/no.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p>
+            Los velociraptores los atraparon, sin dejarles escapar. Darius aprendió que en momentos peligrosos, es crucial mantener la calma y planificar bien.
+        </p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<div class="text-right mt-3">
+    <a asp-controller="Risk" asp-action="Create" style="float: right;">Página siguiente</a>
+</div>
