@@ -70,5 +70,17 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Fin>? Fin { get; set; }
 
         public DbSet<SecureAssetManager.Models.Salida>? Salida { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Atorado>? Atorado { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Codigo>? Codigo { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mapa>? Mapa { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Rusa>? Rusa { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Victoria>? Victoria { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Video>? Video { get; set; }
 	}
 }
