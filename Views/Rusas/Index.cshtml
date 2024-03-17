@@ -1,42 +1,52 @@
 ﻿@model IEnumerable<SecureAssetManager.Models.Rusa>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jurásico 15";
 }
 
 <style>
     #container {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
     }
 
     #center p, #third p, #fourth p {
         font-size: 2em; /* Ajusta este valor según tus necesidades */
     }
+
+    .img-fluid {
+        max-width: 500px;
+        max-height: 450px;
+    }
+
+    .btn {
+        font-size: 1.5em; /* Ajusta este valor según tus necesidades */
+        padding: 10px 20px; /* Ajusta estos valores según tus necesidades */
+    }
 </style>
 
 <div id="container">
     <div id="left-side" class="text-center">
-        <img src="~/images/arbol.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
-        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">2974(numero de la tienda)</a>
+        <img src="~/img/2974.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Salida">Tienda 2974</a>
+    </div>
+    <div id="right-side" class="text-center">
+        <img src="~/img/2005.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Salida">Parque 2005</a>
+    </div>
+    <div id="fourth" class="text-center">
+        <img src="~/img/2015.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Create" asp-controller="Victorias">Inaug. 2015</a>
     </div>
     <div id="center" class="text-center">
         <p>
-            Pero un dinosaurio más grande agarra al primero y Darius huye hasta un acantilado.Darius rápidamente decide lanzarse a una liana o a un árbol.
+            Darius debe decidir entre los tres códigos los cuales son de vida o muerte.....
         </p>
-    </div>
-    <div id="right-side" class="text-center">
-        <img src="~/images/liana.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
-        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">2005(Fecha que se ignauguro el parque)</a>
     </div>
     <div id="third" class="text-center">
         <p>
-            Darius debe decidir entre los tres codigos los cuales son de vide o muerte.....
-            Recordando la frase el sabio Owem Greidy : "Este es el incio del fin."
+            Recordando la frase del sabio Owen Grady: "Este es el inicio del fin."
         </p>
-    </div>
-    <div id="fourth" class="text-center">
-        <img src="~/images/liana.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
-        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">2015(fecha original de ignauguracion)</a>
     </div>
 </div>
