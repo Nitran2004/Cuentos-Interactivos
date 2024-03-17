@@ -1,41 +1,22 @@
 ﻿@model IEnumerable<SecureAssetManager.Models.Mapa>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jurasico 13";
 }
 
-<h1>Index</h1>
+<h1 style="font-size: 2em;">Jurasico 13</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoControl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Efectividad)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoControl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Efectividad)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/img/olor.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 600px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p style="font-size: 1.8em;">
+            Deciden bajar por los andamios al notar que un dinosaurio los acecha en el juego, pero Darius decide limpiarse el olor que los delata.
+        </p>
+    </div>
+</div>
+
+<div class="text-right mt-3">
+    <a asp-controller="Montaña" asp-action="Create" style="float: right;">Página siguiente</a>
+</div>

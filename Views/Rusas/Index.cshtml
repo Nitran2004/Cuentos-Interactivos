@@ -4,38 +4,39 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    #container {
+        display: flex;
+        justify-content: space-between;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoControl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Efectividad)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoControl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Efectividad)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    #center p, #third p, #fourth p {
+        font-size: 2em; /* Ajusta este valor según tus necesidades */
+    }
+</style>
+
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/arbol.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">2974(numero de la tienda)</a>
+    </div>
+    <div id="center" class="text-center">
+        <p>
+            Pero un dinosaurio más grande agarra al primero y Darius huye hasta un acantilado.Darius rápidamente decide lanzarse a una liana o a un árbol.
+        </p>
+    </div>
+    <div id="right-side" class="text-center">
+        <img src="~/images/liana.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">2005(Fecha que se ignauguro el parque)</a>
+    </div>
+    <div id="third" class="text-center">
+        <p>
+            Darius debe decidir entre los tres codigos los cuales son de vide o muerte.....
+            Recordando la frase el sabio Owem Greidy : "Este es el incio del fin."
+        </p>
+    </div>
+    <div id="fourth" class="text-center">
+        <img src="~/images/liana.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
+        <a class="btn btn-primary mb-3 custom-text-color" asp-action="Index" asp-controller="Control">2015(fecha original de ignauguracion)</a>
+    </div>
+</div>

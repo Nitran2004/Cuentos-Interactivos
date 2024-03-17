@@ -1,38 +1,22 @@
 ﻿@model SecureAssetManager.Models.Rusa
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Jurasico 14";
 }
 
-<h1>Create</h1>
+<h1 style="font-size: 2em;">Jurasico 14</h1>
 
-<h4>Rusa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TipoControl" class="control-label"></label>
-                <input asp-for="TipoControl" class="form-control" />
-                <span asp-validation-for="TipoControl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Efectividad" class="control-label"></label>
-                <input asp-for="Efectividad" class="form-control" />
-                <span asp-validation-for="Efectividad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/img/escondido.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 600px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p style="font-size: 1.8em;">
+            Encuentran el bunker donde está toda la comida, pero para abrirlo necesitan un código. El dinosaurio los acecha, aumentando el peligro y la tensión.
+        </p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-right mt-3">
+    <a asp-controller="Rusas" asp-action="Index" style="float: right;">Página siguiente</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
