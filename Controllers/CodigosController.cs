@@ -1,163 +1,73 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class CodigosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public CodigosController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+
+        public CodigosController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: Codigos
         public async Task<IActionResult> Index()
         {
-              return _context.Codigo != null ? 
-                          View(await _context.Codigo.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Codigo'  is null.");
+            return View(await _context.Codigo.ToListAsync());
         }
 
-        // GET: Codigos/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Codigo == null)
-            {
-                return NotFound();
-            }
 
-            var codigo = await _context.Codigo
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (codigo == null)
-            {
-                return NotFound();
-            }
-
-            return View(codigo);
-        }
-
-        // GET: Codigos/Create
         public IActionResult Create()
         {
             return View();
         }
+        public IActionResult Tratamiento(string code)
+        {
+            // Aquí puedes realizar cualquier lógica adicional antes de mostrar la vista "Tratamiento.cshtml"
+            return View();
+        }
 
-        // POST: Codigos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TipoControl,Efectividad")] Codigo codigo)
+        public IActionResult Create(string accion)
         {
-            if (ModelState.IsValid)
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
-                _context.Add(codigo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Create", "Videos");
             }
-            return View(codigo);
+            return View();
         }
 
-        // GET: Codigos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Privacy()
         {
-            if (id == null || _context.Codigo == null)
-            {
-                return NotFound();
-            }
-
-            var codigo = await _context.Codigo.FindAsync(id);
-            if (codigo == null)
-            {
-                return NotFound();
-            }
-            return View(codigo);
+            return View();
         }
 
-        // POST: Codigos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TipoControl,Efectividad")] Codigo codigo)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (id != codigo.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(codigo);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CodigoExists(codigo.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(codigo);
-        }
-
-        // GET: Codigos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Codigo == null)
-            {
-                return NotFound();
-            }
-
-            var codigo = await _context.Codigo
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (codigo == null)
-            {
-                return NotFound();
-            }
-
-            return View(codigo);
-        }
-
-        // POST: Codigos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Codigo == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Codigo'  is null.");
-            }
-            var codigo = await _context.Codigo.FindAsync(id);
-            if (codigo != null)
-            {
-                _context.Codigo.Remove(codigo);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CodigoExists(int id)
-        {
-          return (_context.Codigo?.Any(e => e.ID == id)).GetValueOrDefault();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

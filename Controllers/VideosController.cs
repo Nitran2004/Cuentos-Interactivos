@@ -1,163 +1,94 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class VideosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public VideosController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+
+        public VideosController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: Videos
         public async Task<IActionResult> Index()
         {
-              return _context.Video != null ? 
-                          View(await _context.Video.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Video'  is null.");
+            return View(await _context.Video.ToListAsync());
         }
 
-        // GET: Videos/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Video == null)
-            {
-                return NotFound();
-            }
 
-            var video = await _context.Video
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (video == null)
-            {
-                return NotFound();
-            }
-
-            return View(video);
-        }
-
-        // GET: Videos/Create
         public IActionResult Create()
         {
             return View();
         }
+        public IActionResult Tratamiento(string code)
+        {
+            // Aquí puedes realizar cualquier lógica adicional antes de mostrar la vista "Tratamiento.cshtml"
+            return View();
+        }
 
-        // POST: Videos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TipoControl,Efectividad")] Video video)
+        public IActionResult Create(string accion)
         {
-            if (ModelState.IsValid)
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
-                _context.Add(video);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Create", "Asset");
             }
-            return View(video);
+            return View();
         }
 
-        // GET: Videos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Video == null)
-            {
-                return NotFound();
-            }
-
-            var video = await _context.Video.FindAsync(id);
-            if (video == null)
-            {
-                return NotFound();
-            }
-            return View(video);
-        }
-
-        // POST: Videos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TipoControl,Efectividad")] Video video)
+        public IActionResult Index(string accion)
         {
-            if (id != video.ID)
+            if (accion == "Página anterior")
             {
-                return NotFound();
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                this.player.LoadAsync();
+                this.player.PlaySync();
+                return RedirectToAction("Create", "Fin");
             }
-
-            if (ModelState.IsValid)
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
-                try
-                {
-                    _context.Update(video);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VideoExists(video.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Index", "Atoradoes");
             }
-            return View(video);
+            return View();
+        }
+        public IActionResult Privacy()
+        {
+            return View();
         }
 
-        // GET: Videos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (id == null || _context.Video == null)
-            {
-                return NotFound();
-            }
-
-            var video = await _context.Video
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (video == null)
-            {
-                return NotFound();
-            }
-
-            return View(video);
-        }
-
-        // POST: Videos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Video == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Video'  is null.");
-            }
-            var video = await _context.Video.FindAsync(id);
-            if (video != null)
-            {
-                _context.Video.Remove(video);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool VideoExists(int id)
-        {
-          return (_context.Video?.Any(e => e.ID == id)).GetValueOrDefault();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
