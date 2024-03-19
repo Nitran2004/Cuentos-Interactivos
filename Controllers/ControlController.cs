@@ -1,19 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class ControlController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public ControlController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+        public ControlController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -28,109 +39,31 @@ namespace SecureAssetManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Control control)
+        public IActionResult Index(string accion)
         {
-            if (ModelState.IsValid)
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
-                _context.Add(control);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Index", "Risk");
             }
-            return View(control);
+            return View();
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Privacy()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var control = await _context.Controls.FirstOrDefaultAsync(m => m.ID == id);
-            if (control == null)
-            {
-                return NotFound();
-            }
-
-            return View(control);
+            return View();
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var control = await _context.Controls.FindAsync(id);
-            if (control == null)
-            {
-                return NotFound();
-            }
-            return View(control);
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Control control)
-        {
-            if (id != control.ID)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(control);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ControlExists(control.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(control);
-        }
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var control = await _context.Controls.FirstOrDefaultAsync(m => m.ID == id);
-            if (control == null)
-            {
-                return NotFound();
-            }
-
-            return View(control);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var control = await _context.Controls.FindAsync(id);
-            _context.Controls.Remove(control);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ControlExists(int id)
-        {
-            return _context.Controls.Any(e => e.ID == id);
-        }
     }
 }
