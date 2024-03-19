@@ -145,14 +145,16 @@ namespace SecureAssetManager.Controllers
 				this.player = new SoundPlayer(this.canciones[this.posicion]);
 				this.player.LoadAsync();
 				this.player.PlaySync();
-			}
+                return RedirectToAction("Create", "Asset");
+            }
 			if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
 			{
 				this.posicion += 1;
 				this.player = new SoundPlayer(this.canciones[this.posicion]);
 				player.LoadAsync();
 				player.PlaySync();
-			}
+                return RedirectToAction("Create", "Control");
+            }
 			return View();
 		}
 
