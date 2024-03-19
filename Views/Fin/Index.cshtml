@@ -21,13 +21,13 @@
     </p>
 </div>
 
-<div class="text-left mt-3">
-    <a asp-controller="Fin" asp-action="Create" style="float: left;">Página anterior</a>
-</div>
 
-<div class="text-right mt-3">
-    <a asp-controller="Atoradoes" asp-action="Create" style="float: right; font-size: 1.5em;">Página siguiente</a>
-</div>
+<form method="post">
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-info" type="submit" name="accion" value="Página anterior">Página anterior</button>
+        <button class="btn btn-info" type="submit" name="accion" value="Página siguiente">Página siguiente</button>
+    </div>
+</form>
 
 <style>
     .img-container {

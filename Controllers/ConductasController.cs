@@ -1,163 +1,72 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class ConductasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public ConductasController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+
+        public ConductasController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: Conductas
         public async Task<IActionResult> Index()
         {
-              return _context.Conducta != null ? 
-                          View(await _context.Conducta.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Conducta'  is null.");
+            return View(await _context.Conducta.ToListAsync());
         }
 
-        // GET: Conductas/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Conducta == null)
-            {
-                return NotFound();
-            }
-
-            var conducta = await _context.Conducta
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (conducta == null)
-            {
-                return NotFound();
-            }
-
-            return View(conducta);
-        }
-
-        // GET: Conductas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Conductas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TipoControl,Efectividad")] Conducta conducta)
+        public IActionResult Create(string accion)
         {
-            if (ModelState.IsValid)
+            if (accion == "Página anterior")
             {
-                _context.Add(conducta);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                this.player.LoadAsync();
+                this.player.PlaySync();
+                return RedirectToAction("Create", "Asset");
             }
-            return View(conducta);
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
+            {
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Create", "Risk");
+            }
+            return View();
+        }
+        public IActionResult Privacy()
+        {
+            return View();
         }
 
-        // GET: Conductas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (id == null || _context.Conducta == null)
-            {
-                return NotFound();
-            }
-
-            var conducta = await _context.Conducta.FindAsync(id);
-            if (conducta == null)
-            {
-                return NotFound();
-            }
-            return View(conducta);
-        }
-
-        // POST: Conductas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TipoControl,Efectividad")] Conducta conducta)
-        {
-            if (id != conducta.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(conducta);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ConductaExists(conducta.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(conducta);
-        }
-
-        // GET: Conductas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Conducta == null)
-            {
-                return NotFound();
-            }
-
-            var conducta = await _context.Conducta
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (conducta == null)
-            {
-                return NotFound();
-            }
-
-            return View(conducta);
-        }
-
-        // POST: Conductas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Conducta == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Conducta'  is null.");
-            }
-            var conducta = await _context.Conducta.FindAsync(id);
-            if (conducta != null)
-            {
-                _context.Conducta.Remove(conducta);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ConductaExists(int id)
-        {
-          return (_context.Conducta?.Any(e => e.ID == id)).GetValueOrDefault();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -38,7 +38,11 @@ namespace SecureAssetManager.Controllers
         {
             return View();
         }
-
+        public IActionResult Tratamiento(string code)
+        {
+            // Aquí puedes realizar cualquier lógica adicional antes de mostrar la vista "Tratamiento.cshtml"
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
