@@ -1,163 +1,96 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class MapasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public MapasController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+
+        public MapasController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: Mapas
         public async Task<IActionResult> Index()
         {
-              return _context.Mapa != null ? 
-                          View(await _context.Mapa.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Mapa'  is null.");
+            return View(await _context.Mapa.ToListAsync());
         }
 
-        // GET: Mapas/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Mapa == null)
-            {
-                return NotFound();
-            }
-
-            var mapa = await _context.Mapa
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (mapa == null)
-            {
-                return NotFound();
-            }
-
-            return View(mapa);
-        }
-
-        // GET: Mapas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Mapas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TipoControl,Efectividad")] Mapa mapa)
+        public IActionResult Create(string accion)
         {
-            if (ModelState.IsValid)
+            if (accion == "Página anterior")
             {
-                _context.Add(mapa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                this.player.LoadAsync();
+                this.player.PlaySync();
+                return RedirectToAction("Create", "Fin");
             }
-            return View(mapa);
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
+            {
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Create", "Montaña");
+            }
+            return View();
         }
 
-        // GET: Mapas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Mapa == null)
-            {
-                return NotFound();
-            }
-
-            var mapa = await _context.Mapa.FindAsync(id);
-            if (mapa == null)
-            {
-                return NotFound();
-            }
-            return View(mapa);
-        }
-
-        // POST: Mapas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TipoControl,Efectividad")] Mapa mapa)
+        public IActionResult Index(string accion)
         {
-            if (id != mapa.ID)
+            if (accion == "Página anterior")
             {
-                return NotFound();
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                this.player.LoadAsync();
+                this.player.PlaySync();
+                return RedirectToAction("Create", "Fin");
             }
-
-            if (ModelState.IsValid)
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
-                try
-                {
-                    _context.Update(mapa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MapaExists(mapa.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Create", "Rusas");
             }
-            return View(mapa);
+            return View();
         }
 
-        // GET: Mapas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Privacy()
         {
-            if (id == null || _context.Mapa == null)
-            {
-                return NotFound();
-            }
-
-            var mapa = await _context.Mapa
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (mapa == null)
-            {
-                return NotFound();
-            }
-
-            return View(mapa);
+            return View();
         }
 
-        // POST: Mapas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (_context.Mapa == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Mapa'  is null.");
-            }
-            var mapa = await _context.Mapa.FindAsync(id);
-            if (mapa != null)
-            {
-                _context.Mapa.Remove(mapa);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool MapaExists(int id)
-        {
-          return (_context.Mapa?.Any(e => e.ID == id)).GetValueOrDefault();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

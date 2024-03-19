@@ -1,163 +1,75 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class AtoradoesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public AtoradoesController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+
+        public AtoradoesController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // GET: Atoradoes
         public async Task<IActionResult> Index()
         {
-              return _context.Atorado != null ? 
-                          View(await _context.Atorado.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Atorado'  is null.");
+            return View(await _context.Atorado.ToListAsync());
         }
 
-        // GET: Atoradoes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Atorado == null)
-            {
-                return NotFound();
-            }
 
-            var atorado = await _context.Atorado
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (atorado == null)
-            {
-                return NotFound();
-            }
-
-            return View(atorado);
-        }
-
-        // GET: Atoradoes/Create
         public IActionResult Create()
         {
             return View();
         }
+        public IActionResult Tratamiento(string code)
+        {
+            // Aquí puedes realizar cualquier lógica adicional antes de mostrar la vista "Tratamiento.cshtml"
+            return View();
+        }
 
-        // POST: Atoradoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TipoControl,Efectividad")] Atorado atorado)
+        public IActionResult Index(string accion)
         {
-            if (ModelState.IsValid)
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
-                _context.Add(atorado);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Tratamiento", "Risk");
             }
-            return View(atorado);
+            return View();
         }
 
-        // GET: Atoradoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Privacy()
         {
-            if (id == null || _context.Atorado == null)
-            {
-                return NotFound();
-            }
-
-            var atorado = await _context.Atorado.FindAsync(id);
-            if (atorado == null)
-            {
-                return NotFound();
-            }
-            return View(atorado);
+            return View();
         }
 
-        // POST: Atoradoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TipoControl,Efectividad")] Atorado atorado)
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (id != atorado.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(atorado);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AtoradoExists(atorado.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(atorado);
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        // GET: Atoradoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Atorado == null)
-            {
-                return NotFound();
-            }
 
-            var atorado = await _context.Atorado
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (atorado == null)
-            {
-                return NotFound();
-            }
-
-            return View(atorado);
-        }
-
-        // POST: Atoradoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Atorado == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Atorado'  is null.");
-            }
-            var atorado = await _context.Atorado.FindAsync(id);
-            if (atorado != null)
-            {
-                _context.Atorado.Remove(atorado);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool AtoradoExists(int id)
-        {
-          return (_context.Atorado?.Any(e => e.ID == id)).GetValueOrDefault();
-        }
     }
 }
