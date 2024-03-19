@@ -38,11 +38,6 @@ namespace SecureAssetManager.Controllers
         {
             return View();
         }
-        public IActionResult Tratamiento(string code)
-        {
-            // Aquí puedes realizar cualquier lógica adicional antes de mostrar la vista "Tratamiento.cshtml"
-            return View();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,7 +48,7 @@ namespace SecureAssetManager.Controllers
                 this.player = new SoundPlayer(this.canciones[this.posicion]);
                 this.player.LoadAsync();
                 this.player.PlaySync();
-                return RedirectToAction("Index", "Montaña");
+                return RedirectToAction("Index", "Mapas");
             }
             if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
             {
@@ -61,7 +56,7 @@ namespace SecureAssetManager.Controllers
                 this.player = new SoundPlayer(this.canciones[this.posicion]);
                 player.LoadAsync();
                 player.PlaySync();
-                return RedirectToAction("Index", "Rusa");
+                return RedirectToAction("Index", "Rusas");
             }
             return View();
         }
