@@ -1,21 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NuGet.ContentModel;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace SecureAssetManager.Controllers
 {
     public class RiskController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public RiskController(ApplicationDbContext context)
+        SoundPlayer player = new SoundPlayer();
+        string[] canciones = { "Canciones/Ejemplo.wav", "Canciones/Ejemplo2.wav" };
+        int posicion = 0;
+
+        public RiskController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -26,178 +36,34 @@ namespace SecureAssetManager.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.AssetCodes = _context.Assets.Select(a => a.CodigoActivo);
-            ViewBag.Assets = _context.Assets.ToList(); //
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Code,ExistingControl")] Risk risk)
-        {
-            var asset = _context.Assets.FirstOrDefault(a => a.CodigoActivo == risk.Code);
-            if (asset != null)
-            {
-                var assetVulnerabilities = _context.AssetVulnerabilitys.Where(av => av.AssetId == asset.ID);
-                var assetThreats = _context.AssetThreats.Where(at => at.AssetId == asset.ID);
-
-                if (assetVulnerabilities.Any() && assetThreats.Any())
-                {
-                    double sumConfidencialidad = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
-                    double sumIntegridad = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
-                    double sumDisponibilidad = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
-
-                    if (assetVulnerabilities.Any())
-                    {
-                        double averageConfidencialidad = sumConfidencialidad / assetVulnerabilities.Count();
-                        double averageIntegridad = sumIntegridad / assetVulnerabilities.Count();
-                        double averageDisponibilidad = sumDisponibilidad / assetVulnerabilities.Count();
-
-                        risk.CID = (averageConfidencialidad + averageIntegridad + averageDisponibilidad) / 3.0;
-                    }
-                    else
-                    {
-                        // Establece un valor predeterminado o maneja este caso de manera apropiada
-                        risk.CID = 0.0; // Otra opción sería asignar null o cualquier otro valor por defecto
-                    }
-
-                    double sumThreatProbability = assetThreats.Select(at => at.Threat.Probability).Sum();
-                    double averageThreatProbability = sumThreatProbability / assetThreats.Count();
-
-                    double sumVulnerabilityProbability = assetVulnerabilities.Select(av => av.Vulnerability.Probability).Sum();
-                    double averageVulnerabilityProbability = sumVulnerabilityProbability / assetVulnerabilities.Count();
-
-                    risk.ThreatLevel = (int)averageThreatProbability;
-                    risk.VulnerabilityLevel = (int)averageVulnerabilityProbability;
-                    risk.RiskLevel = risk.CID * risk.ThreatLevel * risk.VulnerabilityLevel;
-
-                    // Asegúrate de que 'RiskLevel' y 'CID' no sean nulos antes de establecer 'Result'
-                    if (risk.RiskLevel.HasValue && risk.CID.HasValue)
-                    {
-                        risk.Result = risk.RiskLevel > 20 ? "Alto" : risk.RiskLevel > 5 ? "Medio" : "Bajo";
-                    }
-                    else
-                    {
-                        // Establece un valor predeterminado o maneja este caso de manera apropiada
-                        risk.Result = "Desconocido";
-                    }
-                }
-            }
-
-            if (risk.Result == null)
-            {
-                // Si por alguna razón 'Result' es null, establece un valor predeterminado
-                risk.Result = "Desconocido";
-            }
-
-            _context.Add(risk);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-
-
-
-        public async Task<IActionResult> Details(string code)
-        {
-            if (code == null)
-            {
-                return NotFound();
-            }
-
-            var risk = await _context.Risks.SingleOrDefaultAsync(m => m.Code == code);
-            if (risk == null)
-            {
-                return NotFound();
-            }
-
-            return View(risk);
-        }
-
-
-        public async Task<IActionResult> Edit(string code)
-        {
-            if (code == null)
-            {
-                return NotFound();
-            }
-
-            var risk = await _context.Risks.FindAsync(code);
-            if (risk == null)
-            {
-                return NotFound();
-            }
-            return View(risk);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string code, Risk risk)
-        {
-            if (code != risk.Code)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(risk);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RiskExists(risk.Code))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(risk);
-        }
-
-        public IActionResult Tratamiento(string code)
-        {
-            // Aquí puedes realizar cualquier lógica adicional antes de mostrar la vista "Tratamiento.cshtml"
             return View();
         }
 
 
-        public async Task<IActionResult> Delete(string code)
-        {
-            if (code == null)
-            {
-                return NotFound();
-            }
-
-            var risk = await _context.Risks.FirstOrDefaultAsync(m => m.Code == code);
-            if (risk == null)
-            {
-                return NotFound();
-            }
-
-            return View(risk);
-        }
-
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string code)
+        public IActionResult Create(string accion)
         {
-            var risk = await _context.Risks.FindAsync(code);
-            _context.Risks.Remove(risk);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
+            {
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Index", "Threat");
+            }
+            return View();
         }
 
-        private bool RiskExists(string code)
+        public IActionResult Privacy()
         {
-            return _context.Risks.Any(e => e.Code == code);
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

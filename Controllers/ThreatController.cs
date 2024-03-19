@@ -27,8 +27,12 @@ namespace SecureAssetManager.Controllers
 			_context = context;
 			_logger = logger;
 		}
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Threats.ToListAsync());
+        }
 
-		public IActionResult Create()
+        public IActionResult Create()
 		{
 			return View();
 		}
