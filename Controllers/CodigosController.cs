@@ -59,6 +59,21 @@ namespace SecureAssetManager.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(string accion)
+        {
+            if (accion == "Página siguiente" && this.posicion < this.canciones.Length)
+            {
+                this.posicion += 1;
+                this.player = new SoundPlayer(this.canciones[this.posicion]);
+                player.LoadAsync();
+                player.PlaySync();
+                return RedirectToAction("Create", "Codigos");
+            }
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
