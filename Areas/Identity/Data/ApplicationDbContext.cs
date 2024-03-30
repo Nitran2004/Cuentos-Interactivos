@@ -82,5 +82,25 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Victoria>? Victoria { get; set; }
 
         public DbSet<SecureAssetManager.Models.Video>? Video { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Oso>? Oso { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Pistola>? Pistola { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Rapel>? Rapel { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gps>? Gps { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Cueva>? Cueva { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Rio>? Rio { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Fogata>? Fogata { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Escalada>? Escalada { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Militar>? Militar { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Bosque>? Bosque { get; set; }
 	}
 }
