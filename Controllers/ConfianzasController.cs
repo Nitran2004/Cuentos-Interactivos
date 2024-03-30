@@ -42,6 +42,18 @@ namespace SecureAssetManager.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(string accion)
+        {
+            if (accion == "Página siguiente")
+            {
+
+                return RedirectToAction("Create", "Rapels");
+            }
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
