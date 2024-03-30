@@ -1,7 +1,7 @@
-﻿@model IEnumerable<SecureAssetManager.Models.Pistola>
+﻿@model SecureAssetManager.Models.Confianza
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Create";
 }
 
 <hr />
@@ -36,22 +36,15 @@
         }
 </style>
 
-<div id="container" style="display: flex; justify-content: center;">
-    <div class="img-container" style="margin-right: 20px;">
-        <img src="~/images/cuenta.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 550px;" />
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/confia.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 500px; margin: 0 auto;" />
     </div>
-    <div class="img-container">
-        <img src="~/images/serbia.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 550px;" />
+    <div id="right-side">
+        <p>
+            Recuerda Eduardo confia en ti, ya que su vida esta en juego.
+        </p>
     </div>
-</div>
-
-<div id="right-side">
-    <p style="font-size: 2em;">
-
-        Ambos descienden del helicóptero y emprenden la búsqueda. La emoción los lleva a mancharse de tierra,
-        mientras Mateo le recuerda a Eduardo que está es excremento.
-
-    </p>
 </div>
 
 
@@ -64,11 +57,3 @@
 </div>
 
 
-
-
-
-<style>
-    .img-container {
-        display: inline-block;
-    }
-</style>

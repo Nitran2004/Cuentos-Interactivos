@@ -102,5 +102,7 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Militar>? Militar { get; set; }
 
         public DbSet<SecureAssetManager.Models.Bosque>? Bosque { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Confianza>? Confianza { get; set; }
 	}
 }

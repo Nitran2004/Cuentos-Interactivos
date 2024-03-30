@@ -1,48 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SecureAssetManager.Data;
 using SecureAssetManager.Models;
+using System.Diagnostics;
 
 namespace SecureAssetManager.Controllers
 {
-    public class OsosController : Controller
+    public class ConfianzasController : Controller
     {
+        private readonly ILogger<ConfianzasController> _logger;
 
-        private readonly ILogger<OsosController> _logger;
-
-        public OsosController(ILogger<OsosController> logger)
+        public ConfianzasController(ILogger<ConfianzasController> logger)
         {
             _logger = logger;
         }
 
-        // GET: Osos
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Osos/Create
+        // GET: Confianzas/Create
         public IActionResult Create()
         {
             return View();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(string accion)
+        public IActionResult Index()
         {
-            if (accion == "Página siguiente")
-            {
-
-                return RedirectToAction("Index", "Osos");
-            }
             return View();
         }
 
@@ -53,7 +38,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Pistolas");
+                return RedirectToAction("Create", "Rapels");
             }
             return View();
         }
