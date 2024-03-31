@@ -52,7 +52,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Index", "Confianzas");
+                return RedirectToAction("Index", "Fogatas");
             }
             return View();
         }
