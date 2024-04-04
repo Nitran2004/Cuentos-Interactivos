@@ -4,35 +4,80 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Fusible</h4>
+
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TipoControl" class="control-label"></label>
-                <input asp-for="TipoControl" class="form-control" />
-                <span asp-validation-for="TipoControl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Efectividad" class="control-label"></label>
-                <input asp-for="Efectividad" class="form-control" />
-                <span asp-validation-for="Efectividad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<style>
+    #container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .btn {
+        color: #fff;
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        border-radius: 25px; /* Añade bordes redondeados */
+        padding: 15px 30px; /* Aumenta el padding para un mejor aspecto */
+        font-size: 22px; /* Ajusta el tamaño de la fuente */
+        transition: all 0.5s; /* Añade una transición suave */
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+        .btn:hover {
+            background-color: #138496; /* Cambia el color de fondo al pasar el mouse */
+            border-color: #138496; /* Cambia el color del borde al pasar el mouse */
+        }
+
+    #center p {
+        font-size: 2.5em;
+        color: #333;
+        line-height: 1.6;
+    }
+</style>
+
+
+
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/gancho.jpg" alt="Imagen de dinosaurio 1" class="img-fluid" />
+    </div>
+
+    <div id="right-side" class="text-center">
+        <img src="~/images/cuerda.jpg" alt="Imagen de dinosaurio 2" class="img-fluid" />
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div id="container">
+    <div id="center" class="text-center">
+        <p>
+            luego debemos de decidir el patron para que vuelva a funcionar la cerca de electricidad entre (-+- y +-+) yo
+            decidi (-+-) si pones la segunda opcion solo te sale que se quemaron y continua la historia
+        </p>
+    </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<div id="container" style="justify-content: space-around;">
+    <div id="left-side" class="text-center">
+        <a class="btn" asp-action="Index" asp-controller="Pistolas">Pistola de gancho</a>
+    </div>
+    <div id="center" class="text-center">
+    </div>
+    <div id="right-side" class="text-center">
+        <a class="btn" asp-action="Index" asp-controller="Pistolas">Cuerdas</a>
+    </div>
+</div>
+
