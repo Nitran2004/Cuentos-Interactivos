@@ -104,5 +104,27 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Bosque>? Bosque { get; set; }
 
         public DbSet<SecureAssetManager.Models.Confianza>? Confianza { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Cerca>? Cerca { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Caja>? Caja { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Descenso>? Descenso { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Cable>? Cable { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Fusible>? Fusible { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Luz>? Luz { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Investigador>? Investigador { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Tienda>? Tienda { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Boma>? Boma { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Vuelta>? Vuelta { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Safari>? Safari { get; set; }
 	}
 }
