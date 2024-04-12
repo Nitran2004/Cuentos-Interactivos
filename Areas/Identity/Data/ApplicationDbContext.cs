@@ -126,5 +126,21 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Vuelta>? Vuelta { get; set; }
 
         public DbSet<SecureAssetManager.Models.Safari>? Safari { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve>? Nieve { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve2>? Nieve2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve3>? Nieve3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve4>? Nieve4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve5>? Nieve5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve6>? Nieve6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve7>? Nieve7 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve8>? Nieve8 { get; set; }
 	}
 }
