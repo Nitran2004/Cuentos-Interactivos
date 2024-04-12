@@ -10,17 +10,17 @@ using SecureAssetManager.Models;
 
 namespace SecureAssetManager.Controllers
 {
-    public class Nieve8Controller : Controller
+    public class Nieve11Controller : Controller
     {
 
 
-        // GET: Nieve8/Create
+        // GET: Nieve11/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Index()
+        public IActionResult Ibdex()
         {
             return View();
         }

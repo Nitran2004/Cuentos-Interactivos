@@ -142,5 +142,15 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Nieve7>? Nieve7 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Nieve8>? Nieve8 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve9>? Nieve9 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve10>? Nieve10 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve11>? Nieve11 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve12>? Nieve12 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Nieve13>? Nieve13 { get; set; }
 	}
 }

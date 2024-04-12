@@ -10,11 +10,8 @@ using SecureAssetManager.Models;
 
 namespace SecureAssetManager.Controllers
 {
-    public class Nieve8Controller : Controller
+    public class Nieve13Controller : Controller
     {
-
-
-        // GET: Nieve8/Create
         public IActionResult Create()
         {
             return View();
@@ -24,5 +21,6 @@ namespace SecureAssetManager.Controllers
         {
             return View();
         }
+
     }
 }
