@@ -4,6 +4,35 @@
     ViewData["Title"] = "Create";
 }
 <hr />
+
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/lobocorre.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 600px; margin: 0 auto;" />
+    </div>
+    <div id="right-side">
+        <p style="font-size: 1.8em;">
+            si vamos por el bosque corremos por el
+            bosque y lo perdemos en el lugar alto
+        </p>
+    </div>
+</div>
+
+<div>
+    <form method="post">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-info" type="submit" name="accion" value="Página siguiente">Página siguiente</button>
+        </div>
+    </form>
+</div>
+
+
+
+<style>
+    .img-container {
+        display: inline-block;
+    }
+</style>
+
 <style>
     #container {
         display: flex;
@@ -33,40 +62,4 @@
             background-color: #138496; /* Cambia el color de fondo al pasar el mouse */
             border-color: #138496; /* Cambia el color del borde al pasar el mouse */
         }
-</style>
-
-<div id="container" style="display: flex; justify-content: center;">
-    <div class="img-container" style="margin-right: 20px;">
-        <img src="~/images/lobocorre.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 550px;" />
-    </div>
-    <div class="img-container">
-        <img src="~/images/lobo.jpg" alt="Imagen de dinosaurio" class="img-fluid" style="max-width: 550px;" />
-    </div>
-</div>
-
-<div id="right-side">
-    <p style="font-size: 2em;">
-
-        si vamos por el bosque corremos por el bosque y lo perdemos en el lugar alto
-
-    </p>
-</div>
-
-
-<div>
-    <form method="post">
-        <div style="display: flex; justify-content: flex-end;">
-            <button class="btn btn-info" type="submit" name="accion" value="Página siguiente">Página siguiente</button>
-        </div>
-    </form>
-</div>
-
-
-
-
-
-<style>
-    .img-container {
-        display: inline-block;
-    }
 </style>
