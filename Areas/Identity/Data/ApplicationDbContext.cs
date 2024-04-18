@@ -152,5 +152,31 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Nieve12>? Nieve12 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Nieve13>? Nieve13 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe>? Heroe { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe2>? Heroe2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe3>? Heroe3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe4>? Heroe4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe5>? Heroe5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe6>? Heroe6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe7>? Heroe7 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe8>? Heroe8 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe9>? Heroe9 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe10>? Heroe10 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe11>? Heroe11 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe12>? Heroe12 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Heroe13>? Heroe13 { get; set; }
 	}
 }
