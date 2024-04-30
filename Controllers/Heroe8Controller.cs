@@ -36,17 +36,6 @@ namespace SecureAssetManager.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(string accion)
-        {
-            if (accion == "Página siguiente")
-            {
-
-                return RedirectToAction("Create", "Heroe9");
-            }
-            return View();
-        }
 
         public IActionResult Privacy()
         {

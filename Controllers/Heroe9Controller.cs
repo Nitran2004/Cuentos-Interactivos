@@ -31,7 +31,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Index", "Heroe9");
+                return RedirectToAction("Create", "Heroe10");
             }
             return View();
         }
@@ -43,7 +43,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Heroe10");
+                return RedirectToAction("Create", "Heroe9");
             }
             return View();
         }
