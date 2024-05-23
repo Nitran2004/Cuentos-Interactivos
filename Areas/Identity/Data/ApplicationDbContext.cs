@@ -190,5 +190,21 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Medi5>? Medi5 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Medi6>? Medi6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre1>? Entre1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre2>? Entre2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre3>? Entre3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre4>? Entre4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre5>? Entre5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre6>? Entre6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre7>? Entre7 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Entre8>? Entre8 { get; set; }
 	}
 }
