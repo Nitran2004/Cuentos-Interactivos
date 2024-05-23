@@ -31,18 +31,6 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Index", "Medi6");
-            }
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(string accion)
-        {
-            if (accion == "Página siguiente")
-            {
-
                 return RedirectToAction("Create", "Medi1");
             }
             return View();
