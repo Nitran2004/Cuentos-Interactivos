@@ -178,5 +178,17 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Heroe12>? Heroe12 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Heroe13>? Heroe13 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Medi1>? Medi1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Medi2>? Medi2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Medi3>? Medi3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Medi4>? Medi4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Medi5>? Medi5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Medi6>? Medi6 { get; set; }
 	}
 }
