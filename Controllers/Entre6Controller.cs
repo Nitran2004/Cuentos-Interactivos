@@ -35,18 +35,6 @@ namespace SecureAssetManager.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(string accion)
-        {
-            if (accion == "Página siguiente")
-            {
-
-                return RedirectToAction("Create", "Entre7");
-            }
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
