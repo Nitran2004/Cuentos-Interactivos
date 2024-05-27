@@ -206,5 +206,17 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Entre7>? Entre7 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Entre8>? Entre8 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Alpez1>? Alpez1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Alpez2>? Alpez2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Alpez3>? Alpez3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Alpez4>? Alpez4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Alpez5>? Alpez5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Alpez6>? Alpez6 { get; set; }
 	}
 }
