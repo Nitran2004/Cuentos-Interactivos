@@ -30,19 +30,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Index", "Entre3");
-            }
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(string accion)
-        {
-            if (accion == "Página siguiente")
-            {
-
-                return RedirectToAction("Create", "Entre4");
+                return RedirectToAction("Index", "Entre2");
             }
             return View();
         }

@@ -42,7 +42,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Entre3");
+                return RedirectToAction("Index", "Entre3");
             }
             return View();
         }

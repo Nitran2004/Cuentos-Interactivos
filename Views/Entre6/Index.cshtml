@@ -4,38 +4,79 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<hr />
+<style>
+    #container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoControl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Efectividad)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoControl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Efectividad)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .text-center {
+        text-align: center;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .btn {
+        color: #fff;
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+        border-radius: 25px; /* Añade bordes redondeados */
+        padding: 15px 30px; /* Aumenta el padding para un mejor aspecto */
+        font-size: 22px; /* Ajusta el tamaño de la fuente */
+        transition: all 0.5s; /* Añade una transición suave */
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+        .btn:hover {
+            background-color: #138496; /* Cambia el color de fondo al pasar el mouse */
+            border-color: #138496; /* Cambia el color del borde al pasar el mouse */
+        }
+
+    #center p {
+        font-size: 2.5em;
+        color: #333;
+        line-height: 1.6;
+    }
+</style>
+
+
+
+<div id="container">
+    <div id="left-side" class="text-center">
+        <img src="~/images/foga.jpeg" alt="Imagen de dinosaurio 1" class="img-fluid" />
+    </div>
+
+    <div id="right-side" class="text-center">
+        <img src="~/images/altura.jpeg" alt="Imagen de dinosaurio 2" class="img-fluid" />
+    </div>
+</div>
+
+<div id="container">
+    <div id="center" class="text-center">
+        <p>
+            una vez pasamos el peligro, debemos buscar algo que nos sirva 
+            de campamento y encontramos una cueva, pero encontramos restos 
+            de animal y (debemos escoger si hacer una fogata para ahyentar al
+            jaguar o subirse al monte en donde no llegan los jaguares y armar 
+            un campamento)(yo decidí armar el campamento)
+        </p>
+    </div>
+</div>
+
+<div id="container" style="justify-content: space-around;">
+    <div id="left-side" class="text-center">
+        <a class="btn" asp-action="Index" asp-controller="Entre5">Fogata</a>
+    </div>
+    <div id="center" class="text-center">
+    </div>
+    <div id="right-side" class="text-center">
+        <a class="btn" asp-action="Create" asp-controller="Entre6">Altura</a>
+    </div>
+</div>
