@@ -230,5 +230,21 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Super5>? Super5 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Super6>? Super6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli1>? Peli1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli2>? Peli2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli3>? Peli3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli4>? Peli4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli5>? Peli5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli6>? Peli6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli7>? Peli7 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Peli8>? Peli8 { get; set; }
 	}
 }
