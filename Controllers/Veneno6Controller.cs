@@ -11,7 +11,7 @@ using SecureAssetManager.Models;
 
 namespace SecureAssetManager.Controllers
 {
-    public class Peli7Controller : Controller
+    public class Veneno6Controller : Controller
     {
         public IActionResult Create()
         {
@@ -30,7 +30,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Peli1");
+                return RedirectToAction("Create", "Veneno1");
             }
             return View();
         }

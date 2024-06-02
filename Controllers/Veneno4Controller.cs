@@ -11,7 +11,7 @@ using SecureAssetManager.Models;
 
 namespace SecureAssetManager.Controllers
 {
-    public class Peli7Controller : Controller
+    public class Veneno4Controller : Controller
     {
         public IActionResult Create()
         {
@@ -25,12 +25,12 @@ namespace SecureAssetManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(string accion)
+        public IActionResult Index(string accion)
         {
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Peli1");
+                return RedirectToAction("Index", "Veneno5");
             }
             return View();
         }

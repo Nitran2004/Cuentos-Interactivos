@@ -246,5 +246,17 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Peli7>? Peli7 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Peli8>? Peli8 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Veneno1>? Veneno1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Veneno2>? Veneno2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Veneno3>? Veneno3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Veneno4>? Veneno4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Veneno5>? Veneno5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Veneno6>? Veneno6 { get; set; }
 	}
 }
