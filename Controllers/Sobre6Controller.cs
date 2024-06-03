@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +11,9 @@ using SecureAssetManager.Models;
 
 namespace SecureAssetManager.Controllers
 {
-    public class Peli7Controller : Controller
+    public class Sobre6Controller : Controller
     {
+
         public IActionResult Create()
         {
             return View();
@@ -29,7 +31,7 @@ namespace SecureAssetManager.Controllers
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Peli1");
+                return RedirectToAction("Index", "Sobre6");
             }
             return View();
         }

@@ -258,5 +258,23 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Veneno5>? Veneno5 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Veneno6>? Veneno6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre1>? Sobre1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre2>? Sobre2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre3>? Sobre3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre4>? Sobre4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre5>? Sobre5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre6>? Sobre6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre7>? Sobre7 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre8>? Sobre8 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Sobre9>? Sobre9 { get; set; }
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using SecureAssetManager.Models;
 
 namespace SecureAssetManager.Controllers
 {
-    public class Peli7Controller : Controller
+    public class Sobre9Controller : Controller
     {
         public IActionResult Create()
         {
@@ -24,16 +25,27 @@ namespace SecureAssetManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public IActionResult Index(string accion)
+        {
+            if (accion == "Página siguiente")
+            {
+
+                return RedirectToAction("Create", "Sobre1");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(string accion)
         {
             if (accion == "Página siguiente")
             {
 
-                return RedirectToAction("Create", "Peli1");
+                return RedirectToAction("Create", "Sobre1");
             }
             return View();
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
