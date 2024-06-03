@@ -276,5 +276,17 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Sobre8>? Sobre8 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Sobre9>? Sobre9 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mito1>? Mito1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mito2>? Mito2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mito3>? Mito3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mito4>? Mito4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mito5>? Mito5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Mito6>? Mito6 { get; set; }
 	}
 }
