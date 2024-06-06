@@ -288,5 +288,19 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Mito5>? Mito5 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Mito6>? Mito6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato1>? Gato1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato2>? Gato2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato3>? Gato3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato4>? Gato4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato5>? Gato5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato6>? Gato6 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Gato7>? Gato7 { get; set; }
 	}
 }
