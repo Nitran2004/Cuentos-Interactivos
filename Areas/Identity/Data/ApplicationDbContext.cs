@@ -302,5 +302,17 @@ namespace SecureAssetManager.Data
         public DbSet<SecureAssetManager.Models.Gato6>? Gato6 { get; set; }
 
         public DbSet<SecureAssetManager.Models.Gato7>? Gato7 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Taker1>? Taker1 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Taker2>? Taker2 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Taker3>? Taker3 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Taker4>? Taker4 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Taker5>? Taker5 { get; set; }
+
+        public DbSet<SecureAssetManager.Models.Taker6>? Taker6 { get; set; }
 	}
 }
